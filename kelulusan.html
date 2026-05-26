@@ -41,7 +41,7 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto">
-                <button type="button" onclick="navigateTo('page-login-kelulusan')" class="flex-1 bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200 uppercase tracking-wide focus:outline-none">
+                <button type="button" id="btn-cek-kelulusan" onclick="navigateTo('page-login-kelulusan')" class="flex-1 bg-gray-400 text-white font-bold py-3 px-6 rounded-xl shadow-lg uppercase tracking-wide cursor-not-allowed focus:outline-none" disabled>
                     Cek Kelulusan
                 </button>
                 <button type="button" onclick="navigateTo('page-cek-nisn')" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200 uppercase tracking-wide focus:outline-none">
@@ -89,27 +89,32 @@
             <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4">
                 <img src="logo_smpn3.jpg" alt="Logo SMPN 3" class="h-16 w-auto object-contain mx-auto sm:mx-0" onerror="this.style.display='none'">
                 <h2 class="text-md sm:text-lg font-bold tracking-wide uppercase">
-                    PENGUMUMAN KELULUSAN KELAS IX SMP NEGERI 3 WATUKUMPUL<br>TAHUN AJARAN 2025/2026
+                    PENGUMUMAN KELULUSAN KELAS IX<br>SMP NEGERI 3 WATUKUMPUL<br>TAHUN AJARAN 2025/2026
                 </h2>
             </div>
         </header>
 
         <main class="flex-grow max-w-2xl mx-auto px-4 py-10 flex flex-col items-center justify-center w-full">
-            <div class="bg-white p-8 rounded-2xl shadow-xl border-t-8 border-green-500 w-full text-center space-y-6">
-                <div class="inline-block bg-green-100 text-green-800 font-extrabold px-6 py-2 rounded-full text-lg tracking-wide uppercase">
-                    Dinyatakan LULUS
-                </div>
+            <div class="bg-white p-8 rounded-2xl shadow-xl border-t-8 border-blue-800 w-full text-center space-y-6">
                 
-                <div class="border-t border-b border-gray-200 py-4 text-left max-w-md mx-auto space-y-3">
-                    <div class="grid grid-cols-3 gap-2"><span class="font-medium text-gray-500">NAMA</span><span class="text-center">:</span><span id="res-nama" class="font-bold text-gray-900"></span></div>
-                    <div class="grid grid-cols-3 gap-2"><span class="font-medium text-gray-500">NISN</span><span class="text-center">:</span><span id="res-nisn" class="font-semibold text-gray-800"></span></div>
-                    <div class="grid grid-cols-3 gap-2"><span class="font-medium text-gray-500">NOMOR PESERTA</span><span class="text-center">:</span><span id="res-nopes" class="font-semibold text-gray-800"></span></div>
-                    <div class="grid grid-cols-3 gap-2"><span class="font-medium text-gray-500">KELAS</span><span class="text-center">:</span><span id="res-kelas" class="font-semibold text-gray-800"></span></div>
-                </div>
+              <div class="border-t border-b border-gray-200 py-5 text-left max-w-md mx-auto space-y-3 text-sm sm:text-base flex flex-col items-center justify-center w-full px-4">
+    <div class="w-full max-w-sm sm:max-w-md space-y-3">
+        <div class="flex items-start"><span class="font-medium text-gray-500 w-36 sm:w-40 flex-shrink-0 whitespace-nowrap">NAMA</span><span class="mx-2 text-gray-400">:</span><span id="res-nama" class="font-bold text-gray-900 break-all flex-grow"></span></div>
+        <div class="flex items-start"><span class="font-medium text-gray-500 w-36 sm:w-40 flex-shrink-0 whitespace-nowrap">NISN</span><span class="mx-2 text-gray-400">:</span><span id="res-nisn" class="font-semibold text-gray-800 break-all flex-grow"></span></div>
+        <div class="flex items-start"><span class="font-medium text-gray-500 w-36 sm:w-40 flex-shrink-0 whitespace-nowrap">NOMOR PESERTA</span><span class="mx-2 text-gray-400">:</span><span id="res-nopes" class="font-semibold text-gray-800 break-all flex-grow"></span></div>
+        <div class="flex items-start"><span class="font-medium text-gray-500 w-36 sm:w-40 flex-shrink-0 whitespace-nowrap">KELAS</span><span class="mx-2 text-gray-400">:</span><span id="res-kelas" class="font-semibold text-gray-800 break-all flex-grow"></span></div>
+    </div>
+</div>
 
-                <p class="text-gray-600 text-sm sm:text-base italic px-4">
-                    Dinyatakan LULUS Dari SMP Negeri 3 Watukumpul Pada Tahun Ajaran 2025/2026
-                </p>
+                <div class="space-y-4 pt-2">
+                    <div class="inline-block bg-green-100 text-green-800 font-extrabold px-8 py-3 rounded-full text-xl tracking-wide uppercase shadow-sm border border-green-200">
+                        LULUS
+                    </div>
+                    
+                    <p class="text-gray-600 text-sm sm:text-base italic px-4">
+                        dari SMP Negeri 3 Watukumpul pada Tahun Ajaran 2025/2026
+                    </p>
+                </div>
 
                 <div class="pt-4">
                     <button type="button" onclick="navigateTo('page-home')" class="bg-main-blue hover:bg-blue-800 text-white font-semibold py-2 px-6 rounded-lg transition shadow focus:outline-none">
@@ -179,7 +184,7 @@
                 </div>
 
                 <div class="pt-2 flex flex-col gap-2">
-                    <button type="button" onclick="navigateTo('page-login-kelulusan')" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 rounded-lg transition shadow focus:outline-none">
+                    <button type="button" id="btn-langsung-login" onclick="navigateTo('page-login-kelulusan')" class="w-full bg-gray-400 text-white font-semibold py-2 rounded-lg cursor-not-allowed focus:outline-none" disabled>
                         Langsung Login Cek Kelulusan
                     </button>
                     <button type="button" onclick="navigateTo('page-home')" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 rounded-lg transition text-sm focus:outline-none">
@@ -317,9 +322,16 @@
         ];
 
         const MASTER_PASSWORD = "20324256"; // NPSN Sekolah
+        let isCountdownFinished = false; // Status apakah hitung mundur selesai
 
-        // 1. FUNGSI NAVIGASI HALAMAN (SPA) - DIJAMIN AKTIF
+        // 1. FUNGSI NAVIGASI HALAMAN (SPA) WITH LOCK SYSTEM
         function navigateTo(pageId) {
+            // JIKA MENCOBA MASUK KE LOGIN KELULUSAN TAPI BELUM WAKTUNYA, JANGAN IZINKAN
+            if (pageId === 'page-login-kelulusan' && !isCountdownFinished) {
+                alert("Mohon maaf, halaman pengumuman belum dibuka resmi sesuai hitung mundur.");
+                return;
+            }
+
             const pages = ['page-home', 'page-login-kelulusan', 'page-hasil-kelulusan', 'page-cek-nisn', 'page-hasil-nisn'];
             pages.forEach(id => {
                 const element = document.getElementById(id);
@@ -334,8 +346,8 @@
             window.scrollTo(0, 0);
         }
 
-        // 2. SISTEM HITUNG MUNDUR (COUNTDOWN)
-        const targetDate = new Date("June 2, 2026 15:00:00 GMT+0700").getTime();
+        // 2. SISTEM HITUNG MUNDUR (COUNTDOWN) & AUTOMATIC LOCK/UNLOCK
+        const targetDate = new Date("May 26, 2026 10:51:00 GMT+0700").getTime();
 
         const countdownInterval = setInterval(function() {
             const now = new Date().getTime();
@@ -353,10 +365,30 @@
                 document.getElementById("seconds").innerText = String(seconds > 0 ? seconds : 0).padStart(2, '0');
             }
 
-            if (distance < 0) {
+            // JIKA HITUNG MUNDUR SELESAI (PENGUMUMAN DIBUKA)
+            if (distance <= 0) {
                 clearInterval(countdownInterval);
+                isCountdownFinished = true;
+
+                // Tampilkan Teks Pengumuman Dibuka
                 if(document.getElementById("countdown-finished")) {
                     document.getElementById("countdown-finished").classList.remove("hidden");
+                }
+
+                // Aktifkan Tombol di Halaman Utama
+                const btnCek = document.getElementById("btn-cek-kelulusan");
+                if (btnCek) {
+                    btnCek.removeAttribute("disabled");
+                    btnCek.classList.remove("bg-gray-400", "cursor-not-allowed");
+                    btnCek.classList.add("bg-blue-700", "hover:bg-blue-800", "transition", "duration-200");
+                }
+
+                // Aktifkan Tombol di Halaman Hasil Cek NISN
+                const btnLangsungLogin = document.getElementById("btn-langsung-login");
+                if (btnLangsungLogin) {
+                    btnLangsungLogin.removeAttribute("disabled");
+                    btnLangsungLogin.classList.remove("bg-gray-400", "cursor-not-allowed");
+                    btnLangsungLogin.classList.add("bg-blue-700", "hover:bg-blue-800", "transition");
                 }
             }
         }, 1000);
