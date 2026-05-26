@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelulusan SMPN 3 Watukumpul</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        .bg-main-blue { background-color: #1e3a8a; }
+        .text-main-blue { color: #1e3a8a; }
+        .bg-light-blue { background-color: #f0f4f8; }
+        .page-layer { transition: all 0.3s ease-in-out; }
+    </style>
+</head>
+<body class="bg-light-blue text-gray-800 flex flex-col min-h-screen font-sans">
+
+    <div id="page-home" class="page-layer flex-grow flex flex-col justify-between">
+        <header class="bg-main-blue text-white py-6 px-4 shadow-md text-center">
+            <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4">
+                <img src="logo_smpn3.jpg" alt="Logo SMPN 3" class="h-20 w-auto object-contain mx-auto sm:mx-0" onerror="this.style.display='none'">
+                <h1 class="text-2xl sm:text-3xl font-bold tracking-wider">SMP NEGERI 3 WATUKUMPUL</h1>
+            </div>
+        </header>
+
+        <main class="flex-grow max-w-3xl mx-auto px-4 py-10 flex flex-col items-center justify-center text-center">
+            <h2 class="text-xl sm:text-2xl font-extrabold text-main-blue mb-8 leading-snug">
+                PENGUMUMAN KELULUSAN KELAS IX SMP NEGERI 3 WATUKUMPUL<br>TAHUN AJARAN 2025/2026
+            </h2>
+
+            <div class="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 w-full max-w-md mb-8 mx-auto">
+                <p class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Hitung Mundur Pengumuman</p>
+                <div id="countdown" class="grid grid-cols-4 gap-2 text-center">
+                    <div class="bg-main-blue text-white rounded-lg p-2"><span id="days" class="text-2xl font-bold block">00</span><span class="text-xs">Hari</span></div>
+                    <div class="bg-main-blue text-white rounded-lg p-2"><span id="hours" class="text-2xl font-bold block">00</span><span class="text-xs">Jam</span></div>
+                    <div class="bg-main-blue text-white rounded-lg p-2"><span id="minutes" class="text-2xl font-bold block">00</span><span class="text-xs">Menit</span></div>
+                    <div class="bg-main-blue text-white rounded-lg p-2"><span id="seconds" class="text-2xl font-bold block">00</span><span class="text-xs">Detik</span></div>
+                </div>
+                <div id="countdown-finished" class="text-green-600 font-bold text-lg mt-3 hidden">
+                    Pengumuman Sudah Dibuka!
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto">
+                <button type="button" onclick="navigateTo('page-login-kelulusan')" class="flex-1 bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200 uppercase tracking-wide focus:outline-none">
+                    Cek Kelulusan
+                </button>
+                <button type="button" onclick="navigateTo('page-cek-nisn')" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg transition duration-200 uppercase tracking-wide focus:outline-none">
+                    Cek NISN
+                </button>
+            </div>
+        </main>
+
+        <footer class="bg-main-blue text-blue-200 py-4 text-center text-xs font-semibold tracking-wide border-t border-blue-800">
+            SPENTIWA KEREN (KREATIF, EDUKATIF, RELIGIUS, NASIONALIS)
+        </footer>
+    </div>
+
+
+    <div id="page-login-kelulusan" class="page-layer flex-grow flex flex-col justify-between hidden">
+        <header class="bg-main-blue text-white py-4 text-center shadow-md">
+            <h1 class="text-lg font-bold">CEK KELULUSAN SISWA</h1>
+        </header>
+
+        <main class="flex-grow flex items-center justify-center px-4 py-10">
+            <div class="bg-white p-8 rounded-2xl shadow-xl border border-blue-100 w-full max-w-md mx-auto">
+                <h3 class="text-xl font-bold text-main-blue mb-6 text-center">Silakan Masuk</h3>
+                <form onsubmit="handleLoginKelulusan(event)" class="space-y-4">
+                    <div>
+                        <input type="text" id="login-nisn" placeholder="Masukkan NISN Anda" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <input type="password" id="login-password" placeholder="Masukkan NPSN Sekolah" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                    </div>
+                    <div id="error-login-kelulusan" class="text-red-600 text-sm font-semibold hidden"></div>
+                    <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2.5 rounded-lg transition shadow">Masuk</button>
+                </form>
+                <button type="button" onclick="navigateTo('page-home')" class="w-full mt-4 text-center text-sm text-blue-600 hover:underline focus:outline-none">Kembali ke Beranda Utama</button>
+            </div>
+        </main>
+
+        <footer class="bg-main-blue text-blue-200 py-4 text-center text-xs font-semibold">
+            SPENTIWA KEREN (KREATIF, EDUKATIF, RELIGIUS, NASIONALIS)
+        </footer>
+    </div>
+
+
+    <div id="page-hasil-kelulusan" class="page-layer flex-grow flex flex-col justify-between hidden">
+        <header class="bg-main-blue text-white py-6 px-4 shadow-md text-center">
+            <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4">
+                <img src="logo_smpn3.jpg" alt="Logo SMPN 3" class="h-16 w-auto object-contain mx-auto sm:mx-0" onerror="this.style.display='none'">
+                <h2 class="text-md sm:text-lg font-bold tracking-wide uppercase">
+                    PENGUMUMAN KELULUSAN KELAS IX SMP NEGERI 3 WATUKUMPUL<br>TAHUN AJARAN 2025/2026
+                </h2>
+            </div>
+        </header>
+
+        <main class="flex-grow max-w-2xl mx-auto px-4 py-10 flex flex-col items-center justify-center w-full">
+            <div class="bg-white p-8 rounded-2xl shadow-xl border-t-8 border-green-500 w-full text-center space-y-6">
+                <div class="inline-block bg-green-100 text-green-800 font-extrabold px-6 py-2 rounded-full text-lg tracking-wide uppercase">
+                    Dinyatakan LULUS
+                </div>
+                
+                <div class="border-t border-b border-gray-200 py-4 text-left max-w-md mx-auto space-y-3">
+                    <div class="grid grid-cols-3 gap-2"><span class="font-medium text-gray-500">NAMA</span><span class="text-center">:</span><span id="res-nama" class="font-bold text-gray-900"></span></div>
+                    <div class="grid grid-cols-3 gap-2"><span class="font-medium text-gray-500">NISN</span><span class="text-center">:</span><span id="res-nisn" class="font-semibold text-gray-800"></span></div>
+                    <div class="grid grid-cols-3 gap-2"><span class="font-medium text-gray-500">NOMOR PESERTA</span><span class="text-center">:</span><span id="res-nopes" class="font-semibold text-gray-800"></span></div>
+                    <div class="grid grid-cols-3 gap-2"><span class="font-medium text-gray-500">KELAS</span><span class="text-center">:</span><span id="res-kelas" class="font-semibold text-gray-800"></span></div>
+                </div>
+
+                <p class="text-gray-600 text-sm sm:text-base italic px-4">
+                    Dinyatakan LULUS Dari SMP Negeri 3 Watukumpul Pada Tahun Ajaran 2025/2026
+                </p>
+
+                <div class="pt-4">
+                    <button type="button" onclick="navigateTo('page-home')" class="bg-main-blue hover:bg-blue-800 text-white font-semibold py-2 px-6 rounded-lg transition shadow focus:outline-none">
+                        Kembali ke Beranda Utama
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-main-blue text-blue-200 py-4 text-center text-xs font-semibold">
+            SPENTIWA KEREN (KREATIF, EDUKATIF, RELIGIUS, NASIONALIS)
+        </footer>
+    </div>
+
+
+    <div id="page-cek-nisn" class="page-layer flex-grow flex flex-col justify-between hidden">
+        <header class="bg-main-blue text-white py-4 text-center shadow-md">
+            <h1 class="text-lg font-bold">PENCARIAN NISN SISWA</h1>
+        </header>
+
+        <main class="flex-grow flex items-center justify-center px-4 py-10">
+            <div class="bg-white p-8 rounded-2xl shadow-xl border border-blue-100 w-full max-w-md mx-auto">
+                <h3 class="text-xl font-bold text-main-blue mb-2 text-center">Cek Akun Login</h3>
+                <p class="text-xs text-gray-500 text-center mb-6">Masukkan NAMA PESERTA (KAPITAL) & Pilih KELAS Anda</p>
+                <form onsubmit="handleCekNisn(event)" class="space-y-4">
+                    <div>
+                        <input type="text" id="search-nama" placeholder="MASUKAN NAMA" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none uppercase">
+                    </div>
+                    <div>
+                        <select id="search-kelas" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none bg-white">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="IX A">IX A</option>
+                            <option value="IX B">IX B</option>
+                            <option value="IX C">IX C</option>
+                            <option value="IX D">IX D</option>
+                        </select>
+                    </div>
+                    <div id="error-cek-nisn" class="text-red-600 text-sm font-semibold hidden"></div>
+                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2.5 rounded-lg transition shadow">Cari Akun</button>
+                </form>
+                <button type="button" onclick="navigateTo('page-home')" class="w-full mt-4 text-center text-sm text-blue-600 hover:underline focus:outline-none">Kembali ke Beranda Utama</button>
+            </div>
+        </main>
+
+        <footer class="bg-main-blue text-blue-200 py-4 text-center text-xs font-semibold">
+            SPENTIWA KEREN (KREATIF, EDUKATIF, RELIGIUS, NASIONALIS)
+        </footer>
+    </div>
+
+
+    <div id="page-hasil-nisn" class="page-layer flex-grow flex flex-col justify-between hidden">
+        <header class="bg-main-blue text-white py-4 text-center shadow-md">
+            <h1 class="text-lg font-bold">DATA AKUN LOGIN ANDA</h1>
+        </header>
+
+        <main class="flex-grow flex items-center justify-center px-4 py-10">
+            <div class="bg-white p-8 rounded-2xl shadow-xl border border-blue-100 w-full max-w-md mx-auto text-center space-y-6">
+                <div class="text-main-blue font-bold text-lg border-b border-gray-100 pb-2">Informasi Akun Ditemukan</div>
+                
+                <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 text-left font-mono space-y-3 text-sm">
+                    <div><span class="font-sans font-semibold text-gray-500 inline-block w-24">USERNAME</span>: <span id="info-username" class="font-bold text-main-blue text-base"></span></div>
+                    <div><span class="font-sans font-semibold text-gray-500 inline-block w-24">PASSWORD</span>: <span id="info-password" class="font-bold text-main-blue text-base"></span></div>
+                </div>
+
+                <div class="text-xs text-gray-500 text-left leading-relaxed">
+                    *Gunakan <span class="font-bold">USERNAME (NISN)</span> dan <span class="font-bold">PASSWORD</span> di atas pada menu <span class="font-semibold text-blue-800">CEK KELULUSAN</span> di halaman utama.
+                </div>
+
+                <div class="pt-2 flex flex-col gap-2">
+                    <button type="button" onclick="navigateTo('page-login-kelulusan')" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-semibold py-2 rounded-lg transition shadow focus:outline-none">
+                        Langsung Login Cek Kelulusan
+                    </button>
+                    <button type="button" onclick="navigateTo('page-home')" class="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 rounded-lg transition text-sm focus:outline-none">
+                        Kembali ke Beranda Utama
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer class="bg-main-blue text-blue-200 py-4 text-center text-xs font-semibold">
+            SPENTIWA KEREN (KREATIF, EDUKATIF, RELIGIUS, NASIONALIS)
+        </footer>
+    </div>
+
+
+    <script>
+        // DATA VALID SESUAI FILE CSV TERBARU YANG ANDA UNGGAH
+        const studentDatabase = [
+            // KELAS IX A
+            { nisn: "0112331914", nopes: "03 - 34 - 0054 - 001 - 8", nama: "AFANUL MUARIFIN", kelas: "IX A" },
+            { nisn: "0118517138", nopes: "03 - 34 - 0054 - 002 - 7", nama: "AKBAR SAPUTRA", kelas: "IX A" },
+            { nisn: "0116825874", nopes: "03 - 34 - 0054 - 003 - 6", nama: "ANNA RAHMAWATI", kelas: "IX A" },
+            { nisn: "0115002997", nopes: "03 - 34 - 0054 - 004 - 5", nama: "APRILIA RIGINA PUTRI", kelas: "IX A" },
+            { nisn: "0113853767", nopes: "03 - 34 - 0054 - 005 - 4", nama: "AZKA JULIANTO", kelas: "IX A" },
+            { nisn: "0119625369", nopes: "03 - 34 - 0054 - 006 - 3", nama: "BREFIT SAPUTRA", kelas: "IX A" },
+            { nisn: "0101057424", nopes: "03 - 34 - 0054 - 007 - 2", nama: "BUNGA FITRIANI", kelas: "IX A" },
+            { nisn: "3113602433", nopes: "03 - 34 - 0054 - 008 - 9", nama: "DEA BANATUL KHOERIYAH", kelas: "IX A" },
+            { nisn: "0112148247", nopes: "03 - 34 - 0054 - 009 - 8", nama: "DIAN DIANA", kelas: "IX A" },
+            { nisn: "0126908668", nopes: "03 - 34 - 0054 - 010 - 7", nama: "DIDI KHOSI'IN", kelas: "IX A" },
+            { nisn: "0103327119", nopes: "03 - 34 - 0054 - 011 - 6", nama: "EKA NOVIAN", kelas: "IX A" },
+            { nisn: "0114236187", nopes: "03 - 34 - 0054 - 012 - 5", nama: "INDRI NURFAIROH", kelas: "IX A" },
+            { nisn: "3106725425", nopes: "03 - 34 - 0054 - 013 - 4", nama: "JEFRI ISKANDAR", kelas: "IX A" },
+            { nisn: "0113033428", nopes: "03 - 34 - 0054 - 014 - 3", nama: "KANJAT MAOLANA", kelas: "IX A" },
+            { nisn: "0118906215", nopes: "03 - 34 - 0054 - 015 - 2", nama: "LAELA RAHMAWATI", kelas: "IX A" },
+            { nisn: "0117170399", nopes: "03 - 34 - 0054 - 016 - 9", nama: "MAESAROTUN KHASANAH", kelas: "IX A" },
+            { nisn: "0114548838", nopes: "03 - 34 - 0054 - 017 - 8", nama: "MUHAMAD DIKA PRANANDA", kelas: "IX A" },
+            { nisn: "3108309388", nopes: "03 - 34 - 0054 - 018 - 7", nama: "MUHAMAD FAHRI", kelas: "IX A" },
+            { nisn: "0119699419", nopes: "03 - 34 - 0054 - 019 - 6", nama: "MUHAMAD YANUAR ARSADANI", kelas: "IX A" },
+            { nisn: "0115672765", nopes: "03 - 34 - 0054 - 020 - 5", nama: "NAFA RAHMAWATI", kelas: "IX A" },
+            { nisn: "0119945254", nopes: "03 - 34 - 0054 - 021 - 4", nama: "NAZIL MUKHSININ", kelas: "IX A" },
+            { nisn: "0113745461", nopes: "03 - 34 - 0054 - 022 - 3", nama: "RAFA ALWY BAKHTIAR", kelas: "IX A" },
+            { nisn: "0119128386", nopes: "03 - 34 - 0054 - 023 - 2", nama: "RESTU ALFARO", kelas: "IX A" },
+            { nisn: "0124256006", nopes: "03 - 34 - 0054 - 024 - 9", nama: "RESTU GALIH STIAWAN", kelas: "IX A" },
+            { nisn: "0105874699", nopes: "03 - 34 - 0054 - 025 - 8", nama: "SANTI SULISTYAWATI", kelas: "IX A" },
+            { nisn: "0116337524", nopes: "03 - 34 - 0054 - 026 - 7", nama: "SELVIA YULIANA SARI", kelas: "IX A" },
+            { nisn: "0126045833", nopes: "03 - 34 - 0054 - 027 - 6", nama: "TIARA NOVITA", kelas: "IX A" },
+            { nisn: "0113155666", nopes: "03 - 34 - 0054 - 028 - 5", nama: "YENI ARYANTI", kelas: "IX A" },
+
+            // KELAS IX B
+            { nisn: "0114760431", nopes: "03 - 34 - 0054 - 029 - 4", nama: "ADIT BAYU SETIAWAN", kelas: "IX B" },
+            { nisn: "0118992829", nopes: "03 - 34 - 0054 - 030 - 3", nama: "AKSANIA FITRI WULANDARI", kelas: "IX B" },
+            { nisn: "0112662979", nopes: "03 - 34 - 0054 - 031 - 2", nama: "ANEZKA NAYSA AQILA", kelas: "IX B" },
+            { nisn: "0116954830", nopes: "03 - 34 - 0054 - 032 - 9", nama: "ASIHATUL AFIDAH", kelas: "IX B" },
+            { nisn: "0114266670", nopes: "03 - 34 - 0054 - 033 - 8", nama: "BENING IQNA ASFIA", kelas: "IX B" },
+            { nisn: "0104855245", nopes: "03 - 34 - 0054 - 034 - 7", nama: "DEFI ANANTA", kelas: "IX B" },
+            { nisn: "0109219353", nopes: "03 - 34 - 0054 - 035 - 6", nama: "DONI SAPUTRA", kelas: "IX B" },
+            { nisn: "0117718788", nopes: "03 - 34 - 0054 - 036 - 5", nama: "ENJI ERIKA", kelas: "IX B" },
+            { nisn: "0095746727", nopes: "03 - 34 - 0054 - 037 - 4", nama: "FAHRUR ROZI", kelas: "IX B" },
+            { nisn: "0113222466", nopes: "03 - 34 - 0054 - 038 - 3", nama: "FARHAN MAULANA ILHAM", kelas: "IX B" },
+            { nisn: "0115874186", nopes: "03 - 34 - 0054 - 040 - 9", nama: "FEBRIYANI ULFAH", kelas: "IX B" },
+            { nisn: "0112877227", nopes: "03 - 34 - 0054 - 041 - 8", nama: "FITRI FAUZIAH", kelas: "IX B" },
+            { nisn: "0118624002", nopes: "03 - 34 - 0054 - 042 - 7", nama: "HANIFATUL KHASANAH", kelas: "IX B" },
+            { nisn: "0114911480", nopes: "03 - 34 - 0054 - 043 - 6", nama: "HELMI FAISAL PRASTIAWAN", kelas: "IX B" },
+            { nisn: "0126878806", nopes: "03 - 34 - 0054 - 044 - 5", nama: "IBNU ARIFKI", kelas: "IX B" },
+            { nisn: "0115731303", nopes: "03 - 34 - 0054 - 045 - 4", nama: "ILHAM MANGSUR SAPUTRA", kelas: "IX B" },
+            { nisn: "0109635076", nopes: "03 - 34 - 0054 - 046 - 3", nama: "ITALITA INDAH OKTAVIA", kelas: "IX B" },
+            { nisn: "0117165812", nopes: "03 - 34 - 0054 - 047 - 2", nama: "JAMILATUN NISA", kelas: "IX B" },
+            { nisn: "0106123145", nopes: "03 - 34 - 0054 - 048 - 9", nama: "JOVAN FAHREZA ALFARIZI", kelas: "IX B" },
+            { nisn: "0116212023", nopes: "03 - 34 - 0054 - 049 - 8", nama: "MARATU NIKMAH", kelas: "IX B" },
+            { nisn: "0104668882", nopes: "03 - 34 - 0054 - 050 - 7", nama: "MUHAMAD AKBAR KAROMI", kelas: "IX B" },
+            { nisn: "0119248614", nopes: "03 - 34 - 0054 - 051 - 6", nama: "MUHAMAD BINTANG SAPUTRA", kelas: "IX B" },
+            { nisn: "0104324687", nopes: "03 - 34 - 0054 - 052 - 5", nama: "MUHAMMAD ADNAN ARIA", kelas: "IX B" },
+            { nisn: "0116356081", nopes: "03 - 34 - 0054 - 053 - 4", nama: "NUR SALSABILA", kelas: "IX B" },
+            { nisn: "0109636700", nopes: "03 - 34 - 0054 - 054 - 3", nama: "THANIA NOFITA DAMAYANTI", kelas: "IX B" },
+            { nisn: "0117070255", nopes: "03 - 34 - 0054 - 055 - 2", nama: "VANIA LAELATUN NIZAR", kelas: "IX B" },
+            { nisn: "0114100337", nopes: "03 - 34 - 0054 - 056 - 9", nama: "YOANITA LARASATI", kelas: "IX B" },
+
+            // KELAS IX C
+            { nisn: "0117578875", nopes: "03 - 34 - 0054 - 057 - 8", nama: "ABDUL RAFA", kelas: "IX C" },
+            { nisn: "0095042247", nopes: "03 - 34 - 0054 - 058 - 7", nama: "ALYA SHIVA", kelas: "IX C" },
+            { nisn: "0118602011", nopes: "03 - 34 - 0054 - 059 - 6", nama: "ANGGIE ANGGRAENI SAPUTRI", kelas: "IX C" },
+            { nisn: "0119991404", nopes: "03 - 34 - 0054 - 060 - 5", nama: "DECA VIO ANETA", kelas: "IX C" },
+            { nisn: "0113338834", nopes: "03 - 34 - 0054 - 061 - 4", nama: "DENO YOGA FIRMANSYAH", kelas: "IX C" },
+            { nisn: "0105892640", nopes: "03 - 34 - 0054 - 062 - 3", nama: "ERNI LESTARI", kelas: "IX C" },
+            { nisn: "0102612697", nopes: "03 - 34 - 0054 - 063 - 2", nama: "FIFI NUR HIDAYAH", kelas: "IX C" },
+            { nisn: "0114914429", nopes: "03 - 34 - 0054 - 064 - 9", nama: "FINDA HIKMA GUNA", kelas: "IX C" },
+            { nisn: "0113650897", nopes: "03 - 34 - 0054 - 065 - 8", nama: "JALU PANGGIH SETIABUDI", kelas: "IX C" },
+            { nisn: "0116644521", nopes: "03 - 34 - 0054 - 066 - 7", nama: "LAELATUL RIZKIYAH", kelas: "IX C" },
+            { nisn: "3111579948", nopes: "03 - 34 - 0054 - 067 - 6", nama: "LINDA SETIANINGSIH", kelas: "IX C" },
+            { nisn: "0113951620", nopes: "03 - 34 - 0054 - 068 - 5", nama: "MAHBU ALWAN", kelas: "IX C" },
+            { nisn: "0113479267", nopes: "03 - 34 - 0054 - 069 - 4", nama: "MEISYA NURAENI", kelas: "IX C" },
+            { nisn: "0114654011", nopes: "03 - 34 - 0054 - 070 - 3", nama: "MEYLINDA REFANI", kelas: "IX C" },
+            { nisn: "0114986231", nopes: "03 - 34 - 0054 - 071 - 2", nama: "MIFTAKHUL KHOERUL ANAM", kelas: "IX C" },
+            { nisn: "3118849817", nopes: "03 - 34 - 0054 - 072 - 9", nama: "NUR HALIMAH HOLIFATUNNISA", kelas: "IX C" },
+            { nisn: "0114289529", nopes: "03 - 34 - 0054 - 073 - 8", nama: "RELIYA", kelas: "IX C" },
+            { nisn: "0118141413", nopes: "03 - 34 - 0054 - 074 - 7", nama: "REZA MAULANA MALIK", kelas: "IX C" },
+            { nisn: "0106622223", nopes: "03 - 34 - 0054 - 075 - 6", nama: "SELVIA AYU WULANDARI", kelas: "IX C" },
+            { nisn: "0108812357", nopes: "03 - 34 - 0054 - 076 - 5", nama: "STANLEY QOLBY NOOR", kelas: "IX C" },
+            { nisn: "0118519708", nopes: "03 - 34 - 0054 - 077 - 4", nama: "SURURI MUSYAFA", kelas: "IX C" },
+            { nisn: "0111130871", nopes: "03 - 34 - 0054 - 078 - 3", nama: "SYAFA MAE AZKIA", kelas: "IX C" },
+            { nisn: "0116231003", nopes: "03 - 34 - 0054 - 079 - 2", nama: "TARMONO", kelas: "IX C" },
+            { nisn: "0105674539", nopes: "03 - 34 - 0054 - 080 - 9", nama: "VANESYA PUTRI", kelas: "IX C" },
+            { nisn: "0125432325", nopes: "03 - 34 - 0054 - 081 - 8", nama: "ZAHROTUNISA", kelas: "IX C" },
+            { nisn: "0108228588", nopes: "03 - 34 - 0054 - 082 - 7", nama: "ZIDAN ARIF FADHILLAH", kelas: "IX C" },
+
+            // KELAS IX D
+            { nisn: "0111045142", nopes: "03 - 34 - 0054 - 083 - 6", nama: "ABBY ALFATAH", kelas: "IX D" },
+            { nisn: "0116622718", nopes: "03 - 34 - 0054 - 084 - 5", nama: "ABDUL AZIZ SETIAWAN", kelas: "IX D" },
+            { nisn: "0113572980", nopes: "03 - 34 - 0054 - 085 - 4", nama: "ADELYA ZUHROTUN NAFISA", kelas: "IX D" },
+            { nisn: "0104076683", nopes: "03 - 34 - 0054 - 086 - 3", nama: "AENA KHAKIM", kelas: "IX D" },
+            { nisn: "0106354143", nopes: "03 - 34 - 0054 - 087 - 2", nama: "ALMISA PUTRA", kelas: "IX D" },
+            { nisn: "0117345540", nopes: "03 - 34 - 0054 - 088 - 9", nama: "ATIFA ROFIKA HANA", kelas: "IX D" },
+            { nisn: "0116292698", nopes: "03 - 34 - 0054 - 089 - 8", nama: "FANAISA ZAHIRA", kelas: "IX D" },
+            { nisn: "0103646145", nopes: "03 - 34 - 0054 - 090 - 7", nama: "FIA SAFITRI", kelas: "IX D" },
+            { nisn: "0106546102", nopes: "03 - 34 - 0054 - 091 - 6", nama: "FIATUN NINGSIH", kelas: "IX D" },
+            { nisn: "0115971541", nopes: "03 - 34 - 0054 - 092 - 5", nama: "HELSI MAOLANA", kelas: "IX D" },
+            { nisn: "3102069618", nopes: "03 - 34 - 0054 - 093 - 4", nama: "HIMATUROHMAH", kelas: "IX D" },
+            { nisn: "0115491076", nopes: "03 - 34 - 0054 - 094 - 3", nama: "IKFI SABILA KHOERIYAH", kelas: "IX D" },
+            { nisn: "0113023333", nopes: "03 - 34 - 0054 - 095 - 2", nama: "IKFINA ROCHMATIN", kelas: "IX D" },
+            { nisn: "0105341254", nopes: "03 - 34 - 0054 - 096 - 9", nama: "INA SELVIANA", kelas: "IX D" },
+            { nisn: "0112992165", nopes: "03 - 34 - 0054 - 097 - 8", nama: "KODIMAN", kelas: "IX D" },
+            { nisn: "0115076163", nopes: "03 - 34 - 0054 - 098 - 7", nama: "MAESAROH", kelas: "IX D" },
+            { nisn: "0119265281", nopes: "03 - 34 - 0054 - 099 - 6", nama: "MUHAMAD BAYU LAELATUL FIKRI", kelas: "IX D" },
+            { nisn: "0117117845", nopes: "03 - 34 - 0054 - 100 - 5", nama: "MUHAMAD DAVAN ZAKARIA", kelas: "IX D" },
+            { nisn: "0116028930", nopes: "03 - 34 - 0054 - 101 - 4", nama: "MUHAMAD IRFAN", kelas: "IX D" },
+            { nisn: "0108420488", nopes: "03 - 34 - 0054 - 102 - 3", nama: "NADIYA", kelas: "IX D" },
+            { nisn: "0115313560", nopes: "03 - 34 - 0054 - 103 - 2", nama: "NAJWA PUTRI AZZAHRA", kelas: "IX D" },
+            { nisn: "0111928838", nopes: "03 - 34 - 0054 - 104 - 9", nama: "NELIN", kelas: "IX D" },
+            { nisn: "0117434342", nopes: "03 - 34 - 0054 - 105 - 8", nama: "NUR AENI", kelas: "IX D" },
+            { nisn: "0117403955", nopes: "03 - 34 - 0054 - 106 - 7", nama: "NURUL HUMAM", kelas: "IX D" },
+            { nisn: "0106356132", nopes: "03 - 34 - 0054 - 107 - 6", nama: "RAFA SAPUTRA", kelas: "IX D" },
+            { nisn: "0102064759", nopes: "03 - 34 - 0054 - 108 - 5", nama: "ROBANA MAULANA", kelas: "IX D" },
+            { nisn: "0105362728", nopes: "03 - 34 - 0054 - 109 - 4", nama: "TEGUH SATRIO", kelas: "IX D" },
+            { nisn: "0104015194", nopes: "03 - 34 - 0054 - 110 - 3", nama: "UNZILA RIZQIKA", kelas: "IX D" }
+        ];
+
+        const MASTER_PASSWORD = "20324256"; // NPSN Sekolah
+
+        // 1. FUNGSI NAVIGASI HALAMAN (SPA) - DIJAMIN AKTIF
+        function navigateTo(pageId) {
+            const pages = ['page-home', 'page-login-kelulusan', 'page-hasil-kelulusan', 'page-cek-nisn', 'page-hasil-nisn'];
+            pages.forEach(id => {
+                const element = document.getElementById(id);
+                if(element) element.classList.add('hidden');
+            });
+            
+            const targetElement = document.getElementById(pageId);
+            if(targetElement) {
+                targetElement.classList.remove('hidden');
+            }
+            
+            window.scrollTo(0, 0);
+        }
+
+        // 2. SISTEM HITUNG MUNDUR (COUNTDOWN)
+        const targetDate = new Date("June 2, 2026 15:00:00 GMT+0700").getTime();
+
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if(document.getElementById("days")) {
+                document.getElementById("days").innerText = String(days > 0 ? days : 0).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours > 0 ? hours : 0).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes > 0 ? minutes : 0).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds > 0 ? seconds : 0).padStart(2, '0');
+            }
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                if(document.getElementById("countdown-finished")) {
+                    document.getElementById("countdown-finished").classList.remove("hidden");
+                }
+            }
+        }, 1000);
+
+        // 3. LOGIKA VALIDASI MASUK (CEK KELULUSAN)
+        function handleLoginKelulusan(event) {
+            event.preventDefault();
+            const inputNisn = document.getElementById('login-nisn').value.trim();
+            const inputPass = document.getElementById('login-password').value.trim();
+            const errorDiv = document.getElementById('error-login-kelulusan');
+
+            if (inputPass !== MASTER_PASSWORD) {
+                errorDiv.innerText = "Password (NPSN) Salah!";
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            const student = studentDatabase.find(s => s.nisn === inputNisn);
+
+            if (student) {
+                document.getElementById('res-nama').innerText = student.nama;
+                document.getElementById('res-nisn').innerText = student.nisn;
+                document.getElementById('res-nopes').innerText = student.nopes;
+                document.getElementById('res-kelas').innerText = student.kelas;
+
+                event.target.reset();
+                navigateTo('page-hasil-kelulusan');
+            } else {
+                errorDiv.innerText = "NISN Anda tidak ditemukan. Periksa NISN Anda melalui tombol Cek NISN!";
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // 4. LOGIKA PENCARIAN AKUN (CEK NISN)
+        function handleCekNisn(event) {
+            event.preventDefault();
+            const inputNama = document.getElementById('search-nama').value.trim().toUpperCase();
+            const inputKelas = document.getElementById('search-kelas').value;
+            const errorDiv = document.getElementById('error-cek-nisn');
+
+            const student = studentDatabase.find(s => s.nama === inputNama && s.kelas === inputKelas);
+
+            if (student) {
+                document.getElementById('info-username').innerText = student.nisn;
+                document.getElementById('info-password').innerText = MASTER_PASSWORD;
+
+                event.target.reset();
+                navigateTo('page-hasil-nisn');
+            } else {
+                errorDiv.innerText = "Data tidak ditemukan. Pastikan Nama Lengkap menggunakan huruf KAPITAL dan kelas sudah dipilih dengan benar!";
+                errorDiv.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
