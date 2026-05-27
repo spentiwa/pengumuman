@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman Hasil TKA 2026 - SMPN 3 Watukumpul</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .bg-primary { background-color: #0B2545; }
+        .bg-secondary { background-color: #134074; }
+        .text-primary { color: #0B2545; }
+        .border-primary { border-color: #0B2545; }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col justify-between text-gray-800">
+
+    <header class="bg-primary text-white py-6 px-4 text-center shadow-md">
+        <div class="max-w-4xl mx-auto flex flex-col items-center gap-3">
+            <img src="logo_smpn3.png" alt="Logo SMPN 3 Watukumpul" class="h-24 w-24 object-contain rounded-full bg-white p-1 shadow">
+            <h1 class="text-xl md:text-2xl font-bold tracking-wider">SMP NEGERI 3 WATUKUMPUL</h1>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 md:p-8 flex flex-col justify-center items-center">
+        
+        <div id="page-home" class="w-full text-center space-y-8 py-8 animate-fade-in">
+            <div class="space-y-2">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-primary">PENGUMUMAN HASIL</h2>
+                <h3 class="text-xl md:text-2xl font-bold text-secondary">TES KEMAMPUAN AKADEMIK (TKA)</h3>
+                <p class="text-lg font-semibold text-gray-600">TAHUN 2026</p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 max-w-md mx-auto pt-4">
+                <button onclick="switchPage('page-login-tka')" class="w-full bg-primary hover:bg-secondary text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 transform hover:-translate-y-0.5 cursor-pointer">
+                    CEK HASIL TKA
+                </button>
+                <button onclick="switchPage('page-cek-nisn')" class="w-full bg-secondary hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg shadow-md transition duration-300 transform hover:-translate-y-0.5 cursor-pointer">
+                    CEK NISN
+                </button>
+            </div>
+        </div>
+
+        <div id="page-login-tka" class="hidden w-full max-w-md bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200">
+            <h3 class="text-xl font-bold text-primary text-center mb-6">Login Cek Hasil TKA</h3>
+            <div id="error-login-tka" class="hidden bg-red-100 text-red-700 p-3 rounded-lg text-sm mb-4 text-center"></div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Username (NISN)</label>
+                    <input type="text" id="login-nisn" placeholder="Masukkan 10 digit NISN" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Password (NPSN)</label>
+                    <input type="password" id="login-pwd" placeholder="Masukkan NPSN Sekolah" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none">
+                </div>
+                <button onclick="prosesLoginTKA()" class="w-full bg-primary hover:bg-secondary text-white font-bold py-2.5 rounded-lg shadow transition cursor-pointer">Login</button>
+                <button onclick="switchPage('page-home')" class="w-full bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 rounded-lg shadow transition cursor-pointer text-sm">Kembali ke Halaman Utama</button>
+            </div>
+        </div>
+
+        <div id="page-hasil-tka" class="hidden w-full bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200 space-y-6">
+            <div class="border-b-2 border-primary pb-3 text-center">
+                <h3 class="text-2xl font-bold text-primary">HASIL TKA 2026</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-gray-50 p-4 rounded-lg text-sm md:text-base">
+                <div class="flex flex-col"><span class="text-gray-500 font-medium">NAMA PESERTA</span><span id="hasil-nama" class="font-bold text-gray-900">-</span></div>
+                <div class="flex flex-col"><span class="text-gray-500 font-medium">NISN</span><span id="hasil-nisn" class="font-bold text-gray-900">-</span></div>
+                <div class="flex flex-col"><span class="text-gray-500 font-medium">KELAS</span><span id="hasil-kelas" class="font-bold text-gray-900">-</span></div>
+                <div class="flex flex-col"><span class="text-gray-500 font-medium">TEMPAT, TANGGAL LAHIR</span><span id="hasil-ttl" class="font-bold text-gray-900">-</span></div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse rounded-lg overflow-hidden shadow-sm">
+                    <thead>
+                        <tr class="bg-primary text-white text-sm md:text-base">
+                            <th class="py-3 px-4 border border-blue-950">MATA PELAJARAN</th>
+                            <th class="py-3 px-4 border border-blue-950 text-center">NILAI & KETERANGAN</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm md:text-base divide-y divide-gray-200">
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-4 font-medium border border-gray-200">Matematika</td>
+                            <td id="nilai-matematika" class="py-3 px-4 text-center font-semibold border border-gray-200">-</td>
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            <td class="py-3 px-4 font-medium border border-gray-200">Bahasa Indonesia</td>
+                            <td id="nilai-indonesia" class="py-3 px-4 text-center font-semibold border border-gray-200">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pt-4 text-center">
+                <button onclick="switchPage('page-home')" class="bg-primary hover:bg-secondary text-white font-bold py-2 px-6 rounded-lg shadow transition cursor-pointer">Kembali ke Halaman Utama</button>
+            </div>
+        </div>
+
+        <div id="page-cek-nisn" class="hidden w-full max-w-md bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200">
+            <h3 class="text-xl font-bold text-primary text-center mb-6">Cek Akun / NISN</h3>
+            <div id="error-cek-nisn" class="hidden bg-red-100 text-red-700 p-3 rounded-lg text-sm mb-4 text-center"></div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">NAMA PESERTA</label>
+                    <input type="text" id="cek-nama" placeholder="Masukkan Nama Lengkap (Huruf Kapital)" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">KELAS</label>
+                    <select id="cek-kelas" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none bg-white">
+                        <option value="">-- Pilih Kelas --</option>
+                        <option value="IX A">IX A</option>
+                        <option value="IX B">IX B</option>
+                        <option value="IX C">IX C</option>
+                        <option value="IX D">IX D</option>
+                    </select>
+                </div>
+                <button onclick="prosesCekNISN()" class="w-full bg-secondary hover:bg-blue-800 text-white font-bold py-2.5 rounded-lg shadow transition cursor-pointer">Cari Akun</button>
+                <button onclick="switchPage('page-home')" class="w-full bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 rounded-lg shadow transition cursor-pointer text-sm">Kembali ke Halaman Utama</button>
+            </div>
+        </div>
+
+        <div id="page-hasil-nisn" class="hidden w-full max-w-md bg-white p-6 md:p-8 rounded-xl shadow-lg border border-gray-200 text-center space-y-6">
+            <div class="border-b-2 border-primary pb-2">
+                <h3 class="text-lg font-bold text-primary">AKUN LOGIN TKA ANDA</h3>
+            </div>
+            <div class="bg-blue-50 p-6 rounded-lg text-left space-y-4 border border-blue-200">
+                <div>
+                    <span class="block text-xs font-bold text-gray-500 uppercase tracking-wider">USERNAME :</span>
+                    <span id="display-username" class="text-xl font-mono font-bold text-primary tracking-wide"></span>
+                </div>
+                <div>
+                    <span class="block text-xs font-bold text-gray-500 uppercase tracking-wider">PASSWORD :</span>
+                    <span id="display-password" class="text-xl font-mono font-bold text-emerald-700 tracking-wide">20324256</span>
+                </div>
+            </div>
+            <p class="text-xs text-gray-500 italic">Silakan catat/salin akun di atas untuk login pada tombol "CEK HASIL TKA".</p>
+            <div class="flex flex-col gap-2 pt-2">
+                <button onclick="siapLoginDiri()" class="w-full bg-primary hover:bg-secondary text-white font-bold py-2.5 rounded-lg shadow transition cursor-pointer">Langsung Login Hasil TKA</button>
+                <button onclick="switchPage('page-home')" class="w-full bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 rounded-lg shadow transition cursor-pointer text-sm">Kembali ke Halaman Utama</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-primary text-white py-4 px-4 text-center border-t border-blue-950">
+        <div class="max-w-4xl mx-auto">
+            <p class="text-sm md:text-base font-bold tracking-wide">SPENTIWA KEREN</p>
+            <p class="text-xs md:text-sm text-blue-200 font-light mt-0.5">(Kreatif, Edukatif, Religius, Nasionalis)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Database Siswa terintegrasi berdasarkan lampiran berkas Anda
+        const dataSiswa = [
+            { nisn: "0112331914", nama: "AFANUL MUARIFIN", kelas: "IX A", ttl: "Pemalang, 2 April 2011", mtk: "40.00 (Memadai)", ind: "93.33 (Baik)" },
+            { nisn: "0118517138", nama: "AKBAR SAPUTRA", kelas: "IX A", ttl: "Pemalang, 9 Februari 2011", mtk: "36.67 (Memadai)", ind: "80.00 (Baik)" },
+            { nisn: "0116825874", nama: "ANNA RAHMAWATI", kelas: "IX A", ttl: "Pemalang, 18 Juli 2011", mtk: "33.33 (Memadai)", ind: "76.67 (Baik)" },
+            { nisn: "0115002997", nama: "APRILIA RIGINA PUTRI", kelas: "IX A", ttl: "Pemalang, 28 April 2011", mtk: "43.33 (Memadai)", ind: "66.67 (Memadai)" },
+            { nisn: "0113853767", nama: "AZKA JULIANTO", kelas: "IX A", ttl: "Pemalang, 28 Juli 2011", mtk: "13.33 (Kurang)", ind: "73.33 (Memadai)" },
+            { nisn: "0119625369", nama: "BREFIT SAPUTRA", kelas: "IX A", ttl: "Pemalang, 27 Juli 2011", mtk: "56.67 (Baik)", ind: "43.33 (Kurang)" },
+            { nisn: "0101057424", nama: "BUNGA FITRIANI", kelas: "IX A", ttl: "Pemalang, 25 September 2010", mtk: "30.00 (Kurang)", ind: "66.67 (Memadai)" },
+            { nisn: "0115491076", nama: "IKFI SABILA KHOERIYAH", kelas: "IX D", ttl: "Pemalang, 17 Maret 2011", mtk: "36.67 (Memadai)", ind: "63.33 (Memadai)" },
+            { nisn: "0113023333", nama: "IKFINA ROCHMATIN", kelas: "IX D", ttl: "Pemalang, 31 Maret 2011", mtk: "53.33 (Memadai)", ind: "43.33 (Kurang)" },
+            { nisn: "0105341254", nama: "INA SELVIANA", kelas: "IX D", ttl: "Pemalang, 4 Desember 2010", mtk: "40.00 (Memadai)", ind: "53.33 (Memadai)" },
+            { nisn: "0112992165", nama: "KODIMAN", kelas: "IX D", ttl: "Pemalang, 10 Desember 2011", mtk: "40.00 (Memadai)", ind: "36.67 (Kurang)" },
+            { nisn: "0115076163", nama: "MAESAROH", kelas: "IX D", ttl: "Pemalang, 14 Mei 2011", mtk: "36.67 (Memadai)", ind: "83.33 (Baik)" },
+            { nisn: "0119265281", nama: "MUHAMAD BAYU LAELATUL FIKRI", kelas: "IX D", ttl: "Pemalang, 21 Agustus 2011", mtk: "33.33 (Memadai)", ind: "43.33 (Kurang)" },
+            { nisn: "0117117845", nama: "MUHAMAD DAVAN ZAKARIA", kelas: "IX D", ttl: "Pemalang, 10 Maret 2011", mtk: "30.00 (Kurang)", ind: "43.33 (Kurang)" }
+        ];
+
+        const NPSN_VALID = "20324256";
+        let tempSavedNISN = ""; // Untuk membantu langsung bypass login setelah cek NISN
+
+        // Fungsi Manajemen Halaman (SPA)
+        function switchPage(pageId) {
+            const pages = ['page-home', 'page-login-tka', 'page-hasil-tka', 'page-cek-nisn', 'page-hasil-nisn'];
+            pages.forEach(page => {
+                document.getElementById(page).classList.add('hidden');
+            });
+            document.getElementById(pageId).classList.remove('hidden');
+            clearInputs();
+        }
+
+        function clearInputs() {
+            document.getElementById('error-login-tka').classList.add('hidden');
+            document.getElementById('error-cek-nisn').classList.add('hidden');
+            document.getElementById('login-nisn').value = "";
+            document.getElementById('login-pwd').value = "";
+            document.getElementById('cek-nama').value = "";
+            document.getElementById('cek-kelas').value = "";
+        }
+
+        // Alur Fitur 1: Cek Hasil TKA (Login)
+        function prosesLoginTKA() {
+            const inputNisn = document.getElementById('login-nisn').value.trim();
+            const inputPwd = document.getElementById('login-pwd').value.trim();
+            const errorDiv = document.getElementById('error-login-tka');
+
+            if(!inputNisn || !inputPwd) {
+                errorDiv.textContent = "Mohon isi semua kolom login!";
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            if(inputPwd !== NPSN_VALID) {
+                errorDiv.textContent = "Password (NPSN) salah!";
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            const siswa = dataSiswa.find(s => s.nisn === inputNisn);
+
+            if(siswa) {
+                // Tampilkan ke Halaman Hasil TKA
+                document.getElementById('hasil-nama').textContent = siswa.nama;
+                document.getElementById('hasil-nisn').textContent = siswa.nisn;
+                document.getElementById('hasil-kelas').textContent = siswa.kelas;
+                document.getElementById('hasil-ttl').textContent = siswa.ttl;
+                document.getElementById('nilai-matematika').textContent = siswa.mtk;
+                document.getElementById('nilai-indonesia').textContent = siswa.ind;
+                
+                switchPage('page-hasil-tka');
+            } else {
+                errorDiv.textContent = "Username (NISN) tidak ditemukan dalam sistem!";
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // Alur Fitur 2: Cek NISN
+        function prosesCekNISN() {
+            const inputNama = document.getElementById('cek-nama').value.trim().toUpperCase();
+            const inputKelas = document.getElementById('cek-kelas').value;
+            const errorDiv = document.getElementById('error-cek-nisn');
+
+            if(!inputNama || !inputKelas) {
+                errorDiv.textContent = "Mohon isi Nama Lengkap dan pilih Kelas!";
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            // Mencari kecocokan parsial/penuh pada nama & wajib sama pada kelas
+            const siswa = dataSiswa.find(s => s.nama.includes(inputNama) && s.kelas === inputKelas);
+
+            if(siswa) {
+                document.getElementById('display-username').textContent = siswa.nisn;
+                tempSavedNISN = siswa.nisn; // Ambil datanya
+                switchPage('page-hasil-nisn');
+            } else {
+                errorDiv.textContent = "Data tidak ditemukan. Pastikan nama kapital dan kelas sudah sesuai berkas.";
+                errorDiv.classList.remove('hidden');
+            }
+        }
+
+        // Fungsi Pintasan agar siswa tidak perlu mengetik ulang setelah cek NISN berhasil
+        function siapLoginDiri() {
+            switchPage('page-login-tka');
+            document.getElementById('login-nisn').value = tempSavedNISN;
+            document.getElementById('login-pwd').value = NPSN_VALID;
+        }
+    </script>
+</body>
+</html>
