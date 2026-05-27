@@ -225,10 +225,10 @@
             <h2>BERHASIL MASUK</h2>
             <div class="info-box" style="text-align: center;">
                 <p>Akun Sekolah: <strong>SMPN 3 WATUKUMPUL</strong></p>
-                <p>Status Data: Tersedia (110 Siswa)</p>
+                <p>Status Data: Berkas Kolektif Tersedia</p>
             </div>
             <div class="btn-group">
-                <button class="btn btn-success" onclick="unduhPDF()">Download Hasil TKA</button>
+                <button class="btn btn-success" onclick="unduhPDFAsli()">Download Hasil TKA</button>
                 <button class="btn btn-secondary" onclick="kembaliUtama('form-login', 'error-login')">Keluar / Kembali</button>
             </div>
         </div>
@@ -253,34 +253,26 @@
     </footer>
 
     <script>
-        // Fungsi perpindahan halaman internal
+        // Navigasi halaman hibrida
         function navigasi(pageId) {
-            // Sembunyikan semua halaman
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
-            
-            // Tampilkan halaman tujuan
             document.getElementById(pageId).classList.add('active');
         }
 
-        // Fungsi khusus kembali ke menu utama sekaligus reset form login
         function kembaliUtama(formId, errorId) {
             document.getElementById(formId).reset();
             document.getElementById(errorId).style.display = 'none';
             navigasi('page-utama');
         }
 
-        // Validasi Login sesuai ketentuan dokumen
+        // Validasi login akurat
         function prosesLogin(event) {
             event.preventDefault();
-            
             const userIn = document.getElementById('username').value.trim();
             const passIn = document.getElementById('password').value.trim();
             
-            const usernameValid = "P03340054";
-            const passwordValid = "20324256";
-            
-            if (userIn === usernameValid && passIn === passwordValid) {
+            if (userIn === "P03340054" && passIn === "20324256") {
                 document.getElementById('error-login').style.display = 'none';
                 navigasi('page-download');
             } else {
@@ -288,20 +280,15 @@
             }
         }
 
-        // Fungsi Simulasi Auto-Download File PDF
-        function unduhPDF() {
-            // Nama file sesuai spesifikasi dokumen TKA Anda
+        // FUNGSI UNDUH FILE PDF ASLI (Menggunakan Metode Link Lokal Berkas)
+        function unduhPDFAsli() {
             const namaFile = "DKHTKA_P03340054_20324256_2705202680004.pdf";
             
-            // Membuat mock text data isi PDF (sebagai trigger unduhan otomatis browser)
-            const isiKolektif = "%PDF-1.4 [Simulasi File Hasil TKA SMPN 3 Watukumpul 2026]";
-            const blob = new Blob([isiKolektif], { type: 'application/pdf' });
             const link = document.createElement('a');
-            
-            link.href = window.URL.createObjectURL(blob);
+            // Mengarahkan langsung ke nama file PDF yang berada satu folder dengan file html ini
+            link.href = namaFile; 
             link.download = namaFile;
             
-            // Trigger klik untuk langsung mengunduh
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
