@@ -149,8 +149,9 @@
     </footer>
 
     <script>
-        // Database Siswa terintegrasi berdasarkan lampiran berkas Anda
+        // Database Siswa Terintegrasi Penuh (82 Siswa)
         const dataSiswa = [
+            // KELAS IX A
             { nisn: "0112331914", nama: "AFANUL MUARIFIN", kelas: "IX A", ttl: "Pemalang, 2 April 2011", mtk: "40.00 (Memadai)", ind: "93.33 (Baik)" },
             { nisn: "0118517138", nama: "AKBAR SAPUTRA", kelas: "IX A", ttl: "Pemalang, 9 Februari 2011", mtk: "36.67 (Memadai)", ind: "80.00 (Baik)" },
             { nisn: "0116825874", nama: "ANNA RAHMAWATI", kelas: "IX A", ttl: "Pemalang, 18 Juli 2011", mtk: "33.33 (Memadai)", ind: "76.67 (Baik)" },
@@ -158,17 +159,118 @@
             { nisn: "0113853767", nama: "AZKA JULIANTO", kelas: "IX A", ttl: "Pemalang, 28 Juli 2011", mtk: "13.33 (Kurang)", ind: "73.33 (Memadai)" },
             { nisn: "0119625369", nama: "BREFIT SAPUTRA", kelas: "IX A", ttl: "Pemalang, 27 Juli 2011", mtk: "56.67 (Baik)", ind: "43.33 (Kurang)" },
             { nisn: "0101057424", nama: "BUNGA FITRIANI", kelas: "IX A", ttl: "Pemalang, 25 September 2010", mtk: "30.00 (Kurang)", ind: "66.67 (Memadai)" },
+            { nisn: "3113602433", nama: "DEA BANATUL KHOERIYAH", kelas: "IX A", ttl: "Pemalang, 20 Oktober 2011", mtk: "30.00 (Kurang)", ind: "73.33 (Memadai)" },
+            { nisn: "0112148247", nama: "DIAN DIANA", kelas: "IX A", ttl: "Pemalang, 3 Februari 2011", mtk: "40.00 (Memadai)", ind: "66.67 (Memadai)" },
+            { nisn: "0126908668", nama: "DIDI KHOSI'IN", kelas: "IX A", ttl: "Pemalang, 12 Juni 2012", mtk: "30.00 (Kurang)", ind: "60.00 (Memadai)" },
+            { nisn: "0103327119", nama: "EKA NOVIAN", kelas: "IX A", ttl: "Kebumen, 22 November 2010", mtk: "33.33 (Memadai)", ind: "66.67 (Memadai)" },
+            { nisn: "0114236187", nama: "INDRI NURFAIROH", kelas: "IX A", ttl: "Pemalang, 21 Juni 2011", mtk: "43.33 (Memadai)", ind: "56.67 (Memadai)" },
+            { nisn: "3106725425", nama: "JEFRI ISKANDAR", kelas: "IX A", ttl: "Pemalang, 23 Januari 2010", mtk: "26.67 (Kurang)", ind: "70.00 (Memadai)" },
+            { nisn: "0113033428", nama: "KANJAT MAOLANA", kelas: "IX A", ttl: "Pemalang, 2 Maret 2011", mtk: "23.33 (Kurang)", ind: "46.67 (Kurang)" },
+            { nisn: "0118906215", nama: "LAELA RAHMAWATI", kelas: "IX A", ttl: "Pemalang, 30 September 2011", mtk: "40.00 (Memadai)", ind: "86.67 (Baik)" },
+            { nisn: "0117170399", nama: "MAESAROTUN KHASANAH", kelas: "IX A", ttl: "Pemalang, 3 April 2011", mtk: "36.67 (Memadai)", ind: "60.00 (Memadai)" },
+            { nisn: "0114548838", nama: "MUHAMAD DIKA PRANANDA", kelas: "IX A", ttl: "Pemalang, 15 Juni 2011", mtk: "36.67 (Memadai)", ind: "60.00 (Memadai)" },
+            { nisn: "3108309388", nama: "MUHAMAD FAHRI", kelas: "IX A", ttl: "Cahya Tani, 3 Desember 2010", mtk: "43.33 (Memadai)", ind: "40.00 (Kurang)" },
+            { nisn: "0119699419", nama: "MUHAMAD YANUAR ARSADANI", kelas: "IX A", ttl: "Pemalang, 27 Maret 2011", mtk: "40.00 (Memadai)", ind: "56.67 (Memadai)" },
+            { nisn: "0115672765", nama: "NAFA RAHMAWATI", kelas: "IX A", ttl: "Pemalang, 17 Maret 2011", mtk: "33.33 (Memadai)", ind: "60.00 (Memadai)" },
+            { nisn: "0119945254", nama: "NAZIL MUKHSININ", kelas: "IX A", ttl: "Pemalang, 8 Maret 2011", mtk: "33.33 (Memadai)", ind: "66.67 (Memadai)" },
+            { nisn: "0113745461", nama: "RAFA ALWY BAKHTIAR", kelas: "IX A", ttl: "Pemalang, 21 Juni 2011", mtk: "40.00 (Memadai)", ind: "46.67 (Kurang)" },
+            { nisn: "0119128386", nama: "RESTU ALFARO", kelas: "IX A", ttl: "Pemalang, 9 April 2011", mtk: "46.67 (Memadai)", ind: "83.33 (Baik)" },
+            { nisn: "0124256006", nama: "RESTU GALIH STIAWAN", kelas: "IX A", ttl: "Pemalang, 30 Januari 2012", mtk: "43.33 (Memadai)", ind: "36.67 (Kurang)" },
+            { nisn: "0105874699", nama: "SANTI SULISTYAWATI", kelas: "IX A", ttl: "Bangkinang, 26 Desember 2010", mtk: "56.67 (Baik)", ind: "80.00 (Baik)" },
+            { nisn: "0116337524", nama: "SELVIA YULIANA SARI", kelas: "IX A", ttl: "Pemalang, 15 Juni 2011", mtk: "53.33 (Memadai)", ind: "70.00 (Memadai)" },
+            { nisn: "0126045833", nama: "TIARA NOVITA", kelas: "IX A", ttl: "Pemalang, 1 Desember 2012", mtk: "23.33 (Kurang)", ind: "56.67 (Memadai)" },
+            { nisn: "0113155666", nama: "YENI ARYANTI", kelas: "IX A", ttl: "Pemalang, 5 Maret 2011", mtk: "40.00 (Memadai)", ind: "76.67 (Baik)" },
+
+            // KELAS IX B
+            { nisn: "0114760431", nama: "ADIT BAYU SETIAWAN", kelas: "IX B", ttl: "Pemalang, 1 April 2011", mtk: "40.00 (Memadai)", ind: "70.00 (Memadai)" },
+            { nisn: "0118992829", nama: "AKSANIA FITRI WULANDARI", kelas: "IX B", ttl: "Pemalang, 1 September 2011", mtk: "30.00 (Kurang)", ind: "73.33 (Memadai)" },
+            { nisn: "0112662979", nama: "ANEZKA NAYSA AQILA", kelas: "IX B", ttl: "Pemalang, 17 Februari 2011", mtk: "23.33 (Kurang)", ind: "63.33 (Memadai)" },
+            { nisn: "0116954830", nama: "ASIHATUL AFIDAH", kelas: "IX B", ttl: "Pemalang, 10 April 2011", mtk: "43.33 (Memadai)", ind: "46.67 (Kurang)" },
+            { nisn: "0114266670", nama: "BENING IQNA ASFIA", kelas: "IX B", ttl: "Pemalang, 9 Oktober 2011", mtk: "50.00 (Memadai)", ind: "76.67 (Baik)" },
+            { nisn: "0104855245", nama: "DEFI ANANTA", kelas: "IX B", ttl: "Pemalang, 24 Desember 2010", mtk: "43.33 (Memadai)", ind: "86.67 (Baik)" },
+            { nisn: "0109219353", nama: "DONI SAPUTRA", kelas: "IX B", ttl: "Pemalang, 30 Juli 2010", mtk: "50.00 (Memadai)", ind: "70.00 (Memadai)" },
+            { nisn: "0117718788", nama: "ENJI ERIKA", kelas: "IX B", ttl: "Pemalang, 29 Desember 2011", mtk: "53.33 (Memadai)", ind: "80.00 (Baik)" },
+            { nisn: "0095746727", nama: "FAHRUR ROZI", kelas: "IX B", ttl: "Pemalang, 20 Juni 2009", mtk: "23.33 (Kurang)", ind: "43.33 (Kurang)" },
+            { nisn: "0113222466", nama: "FARHAN MAULANA ILHAM", kelas: "IX B", ttl: "Pemalang, 21 Maret 2011", mtk: "20.00 (Kurang)", ind: "46.67 (Kurang)" },
+            { nisn: "0115874186", nama: "FEBRIYANI ULFAH", kelas: "IX B", ttl: "Pemalang, 18 Februari 2011", mtk: "13.33 (Kurang)", ind: "70.00 (Memadai)" },
+            { nisn: "0112877227", nama: "FITRI FAUZIAH", kelas: "IX B", ttl: "Pemalang, 11 Oktober 2011", mtk: "36.67 (Memadai)", ind: "46.67 (Kurang)" },
+            { nisn: "0118624002", nama: "HANIFATUL KHASANAH", kelas: "IX B", ttl: "Pemalang, 23 April 2011", mtk: "56.67 (Baik)", ind: "70.00 (Memadai)" },
+            { nisn: "0114911480", nama: "HELMI FAISAL PRASTIAWAN", kelas: "IX B", ttl: "Pemalang, 22 Agustus 2011", mtk: "33.33 (Memadai)", ind: "56.67 (Memadai)" },
+            { nisn: "0126878806", nama: "IBNU ARIFKI", kelas: "IX B", ttl: "Pemalang, 18 April 2012", mtk: "33.33 (Memadai)", ind: "76.67 (Baik)" },
+            { nisn: "0115731303", nama: "ILHAM MANGSUR SAPUTRA", kelas: "IX B", ttl: "Pemalang, 13 Februari 2011", mtk: "46.67 (Memadai)", ind: "76.67 (Baik)" },
+            { nisn: "0109635076", nama: "ITALITA INDAH OKTAVIA", kelas: "IX B", ttl: "Pemalang, 27 November 2010", mtk: "40.00 (Memadai)", ind: "43.33 (Kurang)" },
+            { nisn: "0117165812", nama: "JAMILATUN NISA", kelas: "IX B", ttl: "Pemalang, 26 Maret 2011", mtk: "50.00 (Memadai)", ind: "90.00 (Baik)" },
+            { nisn: "0106123145", nama: "JOVAN FAHREZA ALFARIZI", kelas: "IX B", ttl: "Pemalang, 25 Juni 2010", mtk: "26.67 (Kurang)", ind: "46.67 (Kurang)" },
+            { nisn: "0116212023", nama: "MARATU NIKMAH", kelas: "IX B", ttl: "Pemalang, 16 Maret 2011", mtk: "26.67 (Kurang)", ind: "60.00 (Memadai)" },
+            { nisn: "0104668882", nama: "MUHAMAD AKBAR KAROMI", kelas: "IX B", ttl: "Pemalang, 14 Desember 2010", mtk: "43.33 (Memadai)", ind: "50.00 (Memadai)" },
+            { nisn: "0119248614", nama: "MUHAMAD BINTANG SAPUTRA", kelas: "IX B", ttl: "Pemalang, 21 Februari 2011", mtk: "36.67 (Memadai)", ind: "63.33 (Memadai)" },
+            { nisn: "0104324687", nama: "MUHAMMAD ADNAN ARIA", kelas: "IX B", ttl: "Pemalang, 29 Juli 2010", mtk: "46.67 (Memadai)", ind: "43.33 (Kurang)" },
+            { nisn: "0116356081", nama: "NUR SALSABILA", kelas: "IX B", ttl: "Pemalang, 2 Agustus 2011", mtk: "43.33 (Memadai)", ind: "56.67 (Memadai)" },
+            { nisn: "0109636700", nama: "THANIA NOFITA DAMAYANTI", kelas: "IX B", ttl: "Pemalang, 22 Desember 2010", mtk: "36.67 (Memadai)", ind: "36.67 (Kurang)" },
+            { nisn: "0117070255", nama: "VANIA LAELATUN NIZAR", kelas: "IX B", ttl: "Pemalang, 23 Mei 2011", mtk: "46.67 (Memadai)", ind: "86.67 (Baik)" },
+            { nisn: "0114100337", nama: "YOANITA LARASATI", kelas: "IX B", ttl: "Pemalang, 21 Agustus 2011", mtk: "33.33 (Memadai)", ind: "63.33 (Memadai)" },
+
+            // KELAS IX C
+            { nisn: "0117578875", nama: "ABDUL RAFA", kelas: "IX C", ttl: "Pemalang, 4 Maret 2011", mtk: "26.67 (Kurang)", ind: "63.33 (Memadai)" },
+            { nisn: "0095042247", nama: "ALYA SHIVA", kelas: "IX C", ttl: "Pemalang, 21 Juni 2009", mtk: "43.33 (Memadai)", ind: "40.00 (Kurang)" },
+            { nisn: "0118602011", nama: "ANGGIE ANGGRAENI SAPUTRI", kelas: "IX C", ttl: "Pemalang, 15 September 2011", mtk: "33.33 (Memadai)", ind: "76.67 (Baik)" },
+            { nisn: "0119991404", nama: "DECA VIO ANETA", kelas: "IX C", ttl: "Pemalang, 22 Juli 2011", mtk: "30.00 (Kurang)", ind: "66.67 (Memadai)" },
+            { nisn: "0113338834", nama: "DENO YOGA FIRMANSYAH", kelas: "IX C", ttl: "Bantul, 26 Maret 2011", mtk: "56.67 (Baik)", ind: "63.33 (Memadai)" },
+            { nisn: "0105892640", border: "IX C", nama: "ERNI LESTARI", kelas: "IX C", ttl: "Pemalang, 31 Mei 2010", mtk: "43.33 (Memadai)", ind: "63.33 (Memadai)" },
+            { nisn: "0102612697", nama: "FIFI NUR HIDAYAH", kelas: "IX C", ttl: "Jakarta, 22 Juni 2010", mtk: "26.67 (Kurang)", ind: "53.33 (Memadai)" },
+            { nisn: "0114914429", nama: "FINDA HIKMA GUNA", kelas: "IX C", ttl: "Pemalang, 26 Februari 2011", mtk: "40.00 (Memadai)", ind: "76.67 (Baik)" },
+            { nisn: "0113650897", nama: "JALU PANGGIH SETIABUDI", kelas: "IX C", ttl: "Pemalang, 4 Januari 2011", mtk: "40.00 (Memadai)", ind: "43.33 (Kurang)" },
+            { nisn: "0116644521", nama: "LAELATUL RIZKIYAH", kelas: "IX C", ttl: "Pemalang, 7 Juli 2011", mtk: "43.33 (Memadai)", ind: "80.00 (Baik)" },
+            { nisn: "3111579948", nama: "LINDA SETIANINGSIH", kelas: "IX C", ttl: "Pemalang, 15 Juni 2011", mtk: "30.00 (Kurang)", ind: "53.33 (Memadai)" },
+            { nisn: "0113951620", nama: "MAHBU ALWAN", kelas: "IX C", ttl: "Pemalang, 6 Januari 2011", mtk: "50.00 (Memadai)", ind: "80.00 (Baik)" },
+            { nisn: "0113479267", nama: "MEISYA NURAENI", kelas: "IX C", ttl: "Pemalang, 18 Mei 2011", mtk: "43.33 (Memadai)", ind: "86.67 (Baik)" },
+            { nisn: "0114654011", nama: "MEYLINDA REFANI", kelas: "IX C", ttl: "Pemalang, 30 Mei 2011", mtk: "46.67 (Memadai)", ind: "66.67 (Memadai)" },
+            { nisn: "0114986231", nama: "MIFTAKHUL KHOERUL ANAM", kelas: "IX C", ttl: "Pemalang, 30 Juni 2011", mtk: "23.33 (Kurang)", ind: "46.67 (Kurang)" },
+            { nisn: "3118849817", nama: "NUR HALIMAH HOLIFATUNNISA", kelas: "IX C", ttl: "Pemalang, 3 April 2011", mtk: "43.33 (Memadai)", ind: "63.33 (Memadai)" },
+            { nisn: "0114289529", nama: "RELIYA", kelas: "IX C", ttl: "Pemalang, 4 Agustus 2011", mtk: "33.33 (Memadai)", ind: "60.00 (Memadai)" },
+            { nisn: "0118141413", nama: "REZA MAULANA MALIK", kelas: "IX C", ttl: "Pemalang, 7 Februari 2011", mtk: "43.33 (Memadai)", ind: "66.67 (Memadai)" },
+            { nisn: "0106622223", nama: "SELVIA AYU WULANDARI", kelas: "IX C", ttl: "Pemalang, 1 Desember 2010", mtk: "40.00 (Memadai)", ind: "76.67 (Baik)" },
+            { nisn: "0108812357", nama: "STANLEY QOLBY NOOR", kelas: "IX C", ttl: "Tangerang, 7 April 2010", mtk: "50.00 (Memadai)", ind: "70.00 (Memadai)" },
+            { nisn: "0118519708", nama: "SURURI MUSYAFA", kelas: "IX C", ttl: "Pemalang, 20 Juli 2011", mtk: "36.67 (Memadai)", ind: "63.33 (Memadai)" },
+            { nisn: "0111130871", nama: "SYAFA MAE AZKIA", kelas: "IX C", ttl: "Pemalang, 5 Maret 2011", mtk: "40.00 (Memadai)", ind: "66.67 (Memadai)" },
+            { nisn: "0116231003", nama: "TARMONO", kelas: "IX C", ttl: "Pemalang, 19 Maret 2011", mtk: "50.00 (Memadai)", ind: "70.00 (Memadai)" },
+            { nisn: "0105674539", nama: "VANESYA PUTRI", kelas: "IX C", ttl: "Pemalang, 20 Desember 2010", mtk: "50.00 (Memadai)", ind: "76.67 (Baik)" },
+            { nisn: "0125432325", nama: "ZAHROTUNISA", kelas: "IX C", ttl: "Pemalang, 7 Juni 2012", mtk: "30.00 (Kurang)", ind: "30.00 (Kurang)" },
+            { nisn: "0108228588", nama: "ZIDAN ARIF FADHILLAH", kelas: "IX C", ttl: "Pemalang, 28 November 2010", mtk: "26.67 (Kurang)", ind: "70.00 (Memadai)" },
+
+            // KELAS IX D
+            { nisn: "0111045142", nama: "ABBY ALFATAH", kelas: "IX D", ttl: "Pemalang, 12 Juni 2011", mtk: "33.33 (Memadai)", ind: "66.67 (Memadai)" },
+            { nisn: "0116622718", nama: "ABDUL AZIZ SETIAWAN", kelas: "IX D", ttl: "Pemalang, 13 Maret 2011", mtk: "43.33 (Memadai)", ind: "46.67 (Kurang)" },
+            { nisn: "0113572980", nama: "ADELYA ZUHROTUN NAFISA", kelas: "IX D", ttl: "Pemalang, 19 Mei 2011", mtk: "63.33 (Baik)", ind: "73.33 (Memadai)" },
+            { nisn: "0104076683", nama: "AENA KHAKIM", kelas: "IX D", ttl: "Pemalang, 7 Juni 2010", mtk: "36.67 (Memadai)", ind: "43.33 (Kurang)" },
+            { nisn: "0106354143", nama: "ALMISA PUTRA", kelas: "IX D", ttl: "Pemalang, 16 Agustus 2010", mtk: "33.33 (Memadai)", ind: "33.33 (Kurang)" },
+            { nisn: "0117345540", nama: "ATIFA ROFIKA HANA", kelas: "IX D", ttl: "Pemalang, 16 Juni 2011", mtk: "43.33 (Memadai)", ind: "70.00 (Memadai)" },
+            { nisn: "0116292698", nama: "FANAISA ZAHIRA", kelas: "IX D", ttl: "Pemalang, 7 Januari 2011", mtk: "23.33 (Kurang)", ind: "60.00 (Memadai)" },
+            { nisn: "0103646145", nama: "FIA SAFITRI", kelas: "IX D", ttl: "Pemalang, 1 September 2010", mtk: "30.00 (Kurang)", ind: "50.00 (Memadai)" },
+            { nisn: "0106546102", nama: "FIATUN NINGSIH", kelas: "IX D", ttl: "Pemalang, 5 Desember 2010", mtk: "30.00 (Kurang)", ind: "46.67 (Kurang)" },
+            { nisn: "0115971541", nama: "HELSI MAOLANA", kelas: "IX D", ttl: "Pemalang, 13 Juli 2011", mtk: "33.33 (Memadai)", ind: "56.67 (Memadai)" },
+            { nisn: "3102069618", nama: "HIMATUROHMAH", kelas: "IX D", ttl: "Pemalang, 21 November 2010", mtk: "33.33 (Memadai)", ind: "46.67 (Kurang)" },
             { nisn: "0115491076", nama: "IKFI SABILA KHOERIYAH", kelas: "IX D", ttl: "Pemalang, 17 Maret 2011", mtk: "36.67 (Memadai)", ind: "63.33 (Memadai)" },
             { nisn: "0113023333", nama: "IKFINA ROCHMATIN", kelas: "IX D", ttl: "Pemalang, 31 Maret 2011", mtk: "53.33 (Memadai)", ind: "43.33 (Kurang)" },
             { nisn: "0105341254", nama: "INA SELVIANA", kelas: "IX D", ttl: "Pemalang, 4 Desember 2010", mtk: "40.00 (Memadai)", ind: "53.33 (Memadai)" },
             { nisn: "0112992165", nama: "KODIMAN", kelas: "IX D", ttl: "Pemalang, 10 Desember 2011", mtk: "40.00 (Memadai)", ind: "36.67 (Kurang)" },
             { nisn: "0115076163", nama: "MAESAROH", kelas: "IX D", ttl: "Pemalang, 14 Mei 2011", mtk: "36.67 (Memadai)", ind: "83.33 (Baik)" },
             { nisn: "0119265281", nama: "MUHAMAD BAYU LAELATUL FIKRI", kelas: "IX D", ttl: "Pemalang, 21 Agustus 2011", mtk: "33.33 (Memadai)", ind: "43.33 (Kurang)" },
-            { nisn: "0117117845", nama: "MUHAMAD DAVAN ZAKARIA", kelas: "IX D", ttl: "Pemalang, 10 Maret 2011", mtk: "30.00 (Kurang)", ind: "43.33 (Kurang)" }
+            { nisn: "0117117845", nama: "MUHAMAD DAVAN ZAKARIA", kelas: "IX D", ttl: "Pemalang, 10 Maret 2011", mtk: "30.00 (Kurang)", ind: "43.33 (Kurang)" },
+            { nisn: "0116028930", nama: "MUHAMAD IRFAN", kelas: "IX D", ttl: "Pemalang, 3 Agustus 2012", mtk: "36.67 (Memadai)", ind: "30.00 (Kurang)" },
+            { nisn: "0108420488", nama: "NADIYA", kelas: "IX D", ttl: "Pemalang, 24 Desember 2010", mtk: "46.67 (Memadai)", ind: "36.67 (Kurang)" },
+            { nisn: "0115313560", nama: "NAJWA PUTRI AZZAHRA", kelas: "IX D", ttl: "Pemalang, 15 Oktober 2011", mtk: "46.67 (Memadai)", ind: "43.33 (Kurang)" },
+            { nisn: "0111928838", nama: "NELIN", kelas: "IX D", ttl: "Ciamis, 3 Juni 2011", mtk: "36.67 (Memadai)", ind: "53.33 (Memadai)" },
+            { nisn: "0117434342", nama: "NUR AENI", kelas: "IX D", ttl: "Pemalang, 25 Maret 2011", mtk: "36.67 (Memadai)", ind: "33.33 (Kurang)" },
+            { nisn: "0117403955", nama: "NURUL HUMAM", kelas: "IX D", ttl: "Pemalang, 16 September 2011", mtk: "20.00 (Kurang)", ind: "33.33 (Kurang)" },
+            { nisn: "0106356132", nama: "RAFA SAPUTRA", kelas: "IX D", ttl: "Pemalang, 15 September 2010", mtk: "33.33 (Memadai)", ind: "86.67 (Baik)" },
+            { nisn: "0102064759", nama: "ROBANA MAULANA", kelas: "IX D", ttl: "Pemalang, 17 Desember 2010", mtk: "20.00 (Kurang)", ind: "36.67 (Kurang)" },
+            { nisn: "0105362728", nama: "TEGUH SATRIO", kelas: "IX D", ttl: "Pemalang, 30 Oktober 2010", mtk: "53.33 (Memadai)", ind: "50.00 (Memadai)" },
+            { nisn: "0104015194", nama: "UNZILA RIZQIKA", kelas: "IX D", ttl: "Pemalang, 14 Juni 2010", mtk: "23.33 (Kurang)", ind: "56.67 (Memadai)" }
         ];
 
         const NPSN_VALID = "20324256";
-        let tempSavedNISN = ""; // Untuk membantu langsung bypass login setelah cek NISN
+        let tempSavedNISN = ""; 
 
         // Fungsi Manajemen Halaman (SPA)
         function switchPage(pageId) {
@@ -210,7 +312,6 @@
             const siswa = dataSiswa.find(s => s.nisn === inputNisn);
 
             if(siswa) {
-                // Tampilkan ke Halaman Hasil TKA
                 document.getElementById('hasil-nama').textContent = siswa.nama;
                 document.getElementById('hasil-nisn').textContent = siswa.nisn;
                 document.getElementById('hasil-kelas').textContent = siswa.kelas;
@@ -242,7 +343,7 @@
 
             if(siswa) {
                 document.getElementById('display-username').textContent = siswa.nisn;
-                tempSavedNISN = siswa.nisn; // Ambil datanya
+                tempSavedNISN = siswa.nisn; 
                 switchPage('page-hasil-nisn');
             } else {
                 errorDiv.textContent = "Data tidak ditemukan. Pastikan nama kapital dan kelas sudah sesuai berkas.";
