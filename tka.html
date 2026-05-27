@@ -228,7 +228,7 @@
                 <p>Status Data: Berkas Kolektif Tersedia</p>
             </div>
             <div class="btn-group">
-                <button class="btn btn-success" onclick="unduhPDFAsli()">Download Hasil TKA</button>
+                <button class="btn btn-success" id="btn-download" onclick="unduhPDFAsli()">Download Hasil TKA</button>
                 <button class="btn btn-secondary" onclick="kembaliUtama('form-login', 'error-login')">Keluar / Kembali</button>
             </div>
         </div>
@@ -253,7 +253,7 @@
     </footer>
 
     <script>
-        // Navigasi halaman
+        // Navigasi halaman hibrida
         function navigasi(pageId) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
@@ -266,7 +266,7 @@
             navigasi('page-utama');
         }
 
-        // Validasi login
+        // Validasi login akurat
         function prosesLogin(event) {
             event.preventDefault();
             const userIn = document.getElementById('username').value.trim();
@@ -280,28 +280,48 @@
             }
         }
 
-        // FUNGSI UNDUH FILE DENGAN METODE TERTANAM BERKAS (FILE TIDAK AKAN KOSONG)
+        // FUNGSI UTAMA: UNDUH FILE ASLI LANGSUNG DARI SERVER GITHUB RAW
         function unduhPDFAsli() {
+            const btn = document.getElementById('btn-download');
+            
+            // !!! PENTING !!! 
+            // Ubah URL di bawah ini sesuai dengan Link Raw berkas PDF di dalam repositori GitHub Anda sendiri
+            const urlRawGitHub = "https://raw.githubusercontent.com/spentiwa/pengumuman/main/DKHTKA_P03340054_20324256_2705202680004.pdf";
             const namaFile = "DKHTKA_P03340054_20324256_2705202680004.pdf";
             
-            // Menggunakan representasi pembukaan dokumen teks data PDF asli Anda
-            const dataKolektif = [
-                '--- PAGE 1 ---\n\nTUT WURI HANDAYAN\n\nKEMENTERIAN PENDIDIKAN DASAR DAN MENENGAH\n DINAS PENDIDIKAN, PEMUDA, DAN OLAHRAGA\n TES KEMAMPUAN AKADEMIK SMP/MTS TAHUN 2026\n\nDKHTKA\n\n\n"Provinsi\n",": 03-JAWA TENGAH\n"\r\n"Kota/Kabupaten\n",": 34 ΚΑΒ. PEMALANG\n"\r\n"Satuan Pendidikan\n",": 0054-SMPN 3 WATUKUMPUL\n"\n\n"No\n Urut\n\",\"Nomor Peserta\n\",\"NISN\n\",\"Nama Peserta\n\",\"Tempat, Tanggal Lahir\n\",\"Matematika\n\",\"Bahasa\n Indonesia\n\",\"Keterangan\n\"\r\n"1\n\",\"T2-26-03-34-0054-0001-8\n\",\"0106354143\n\",\"ALMISA PUTRA\n\",\"PEMALANG, 16 Agustus 2010\n\",\"33.33\n (Memadai)\n\",\"33.33\n (Kurang)\n\",\r\n"2\n\",\"T2-26-03-34-0054-0002-7\n\",\"0106546102\n\",\"FIATUN NINGSIH\n\",\"PEMALANG, 5 Desember 2010\n\",\"30.00\n (Kurang)\n\",\"46.67\n (Kurang)\n\",\r\n"3\n"',
-                '...\n[Seluruh baris tabel peserta 1 s.d 105 SMPN 3 Watukumpul]\n...',
-                '"102\n\",\"T2-26-03-34-0054-0102-3\n\",\"0113745461\n\",\"RAFA ALWY BAKHTIAR\n\",\"PEMALANG, 21 Juni 2011\n\",\"40.00\n (Memadai)\n\",\"46.67\n (Kurang)\n\",\r\n"103\n\",\"T2-26-03-34-0054-0103-2\n\",\"0118517138\n\",\"AKBAR SAPUTRA\n\",\"PEMALANG, 9 Februari 2011\n\",\"36.67\n (Memadai)\n\",\"80.00\n (Baik)\n\",\r\n"104\n\",\"T2-26-03-34-0054-0104-9\n\",\"0119128386\n\",\"RESTU ALFARO\n\",\"PEMALANG, 9 April 2011\n\",\"46.67\n (Memadai)\n\",\"83.33\n (Baik)\n\",\r\n"105\n\",\"T2-26-03-34-0054-0105...'
-            ].join('');
+            btn.innerText = "Mengunduh...";
+            btn.disabled = true;
 
-            // Membungkus data ke bentuk blob dokumen asli agar browser mengenali format berkas secara langsung
-            const blob = new Blob([dataKolektif], { type: 'application/pdf' });
-            const link = document.createElement('a');
-            
-            link.href = window.URL.createObjectURL(blob);
-            link.download = namaFile;
-            
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            window.URL.revokeObjectURL(link.href);
+            // Memanggil file menggunakan fetch API biner agar data terenkripsi PDF asli tidak rusak/kosong
+            fetch(urlRawGitHub)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Berkas tidak ditemukan di GitHub Raw. Periksa konfigurasi URL Anda.");
+                    }
+                    return response.blob(); // Mengubah respon server menjadi Blob biner PDF asli
+                })
+                .then(blob => {
+                    // Membuat URL bayangan di memori peramban
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = namaFile;
+                    
+                    // Eksekusi trigger klik unduhan otomatis
+                    document.body.appendChild(link);
+                    link.click();
+                    
+                    // Bersihkan sisa objek memori browser
+                    document.body.removeChild(link);
+                    window.URL.revokeObjectURL(link.href);
+                    
+                    btn.innerText = "Download Hasil TKA";
+                    btn.disabled = false;
+                })
+                .catch(error => {
+                    alert("Gagal mengunduh file asli: " + error.message + "\n\nPastikan Anda sudah mengganti alamat 'urlRawGitHub' di dalam kode dengan benar.");
+                    btn.innerText = "Download Hasil TKA";
+                    btn.disabled = false;
+                });
         }
     </script>
 </body>
